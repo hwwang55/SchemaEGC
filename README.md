@@ -2,7 +2,7 @@
 
 This repository is the PyTorh implementation of SchemaEGC ([arXiv](https://arxiv.org/abs/2206.02921)):
 > Schema-Guided Event Graph Completion  
-Anonymous Author(s)  
+Hongwei Wang, Zixuan Zhang, Sha Li, Jiawei Han, Yizhou Sun, Hanghang Tong, Joseph P. Olive, Heng Ji  
 arXiv preprint
 
 
