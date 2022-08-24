@@ -1,0 +1,6 @@
+.idea/*
+baselines/*
+data/car_bombings/*
+data/ied_bombings/*
+data/suicide_ied/*
+kairos/*
