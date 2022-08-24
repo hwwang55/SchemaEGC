@@ -78,12 +78,6 @@ def train(args, schema, data):
     print('final ', end='')
     evaluate(model, 'test', test_data_context, test_data_path, test_labels)
     print()
-    '''
-    if args.use_path:
-        evaluate_set(args, model, test_data, ht2paths, path_feature_len, n_events)
-    else:
-        evaluate_set(args, model, test_data, None, None, n_events)
-    '''
 
 
 def evaluate(model, mode, data_context, data_path, label):
@@ -94,29 +88,6 @@ def evaluate(model, mode, data_context, data_path, label):
     f1 = f1_score(y_pred=(pred >= 0.5), y_true=label)
     print('%s acc: %.4f  auc: %.4f  f1: %.4f' % (mode, acc, auc, f1), end='    ')
     return acc, auc, f1
-
-
-'''
-def evaluate_set(args, model, data, ht2paths, path_feature_len, n_events):
-    ratio = 0.9
-    jaccard_list = []
-    f1_list = []
-    for s in data:
-        np.random.shuffle(s)
-        left = s[: int(len(s) * ratio)]
-        removed = s[int(len(s) * ratio):]
-        if len(left) > 0 and len(removed) > 0:
-            data_context = transform_data_wrt_context([left], n_events) if args.use_context else None
-            data_path = transform_data_wrt_path([left], ht2paths, path_feature_len, n_events) if args.use_path else None
-            pred = torch.sigmoid(model(data_context, data_path)).cpu().detach().numpy()
-            removed = set(removed)
-            pred = set(np.argwhere(pred > 0.5).squeeze()) - set(left)
-            jaccard = len(removed & pred) / len(removed | pred)
-            f1 = 2 * len(removed & pred) / (len(removed) + len(pred))
-            jaccard_list.append(jaccard)
-            f1_list.append(f1)
-    print('JI: %.4f    F1: %.4f' % (float(np.mean(jaccard_list)), float(np.mean(f1_list))))
-'''
 
 
 def get_labels(data, n_events):
